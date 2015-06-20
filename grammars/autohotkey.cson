@@ -5,15 +5,20 @@ fileTypes: [
 ]
 # 'firstLineMatch': ''
 patterns: [
+# comments
+    { # single-line comments
+        match: ';.*'
+        name: 'comment.line.ahk'
+    }
+    { # block comments
+        begin: '/\\*'
+        end: '\\*/'
+        name: 'comment.block.ahk'
+    }
+
     {# Quoted strings
         name: '.string'
         match: '["].*["]'
-        }
-    {# Comment Lines
-        captures:
-            1: name: '.comment.line.ahk'
-            2: name: '.punctuation.definition.semi-colon.comment'
-        match: '((;).*)'
         }
     {# Numbers
         captures:
