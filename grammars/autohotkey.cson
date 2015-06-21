@@ -31,14 +31,27 @@ patterns: [
             2: name: 'comment.line.directives.ahk'
     }
 
+# numbers
+    { # hexa
+        match: '\\b0[xX]\\h+\\b'
+        name: 'constant.numeric.integer.hexadecimal.ahk'
+    }
+    { # int
+        match: '\\b\\d+\\b'
+        name: 'constant.numeric.integer.ahk'
+    }
+    { # float without decimals
+        match: '\\b\\d+\\.\\b'
+        name: 'constant.numeric.float.ahk'
+    }
+    { # float with decimals + scientific notation
+        match: '\\b\\d*\\.\\d+([eE][+-]?\\d+)?'
+        name: 'constant.numeric.float.ahk'
+    }
+
     {# Quoted strings
         name: '.string'
         match: '["].*["]'
-        }
-    {# Numbers
-        captures:
-            1: name: '.constant.numeric'
-        match: '\\s+([0-9]*)\\s+'
         }
     {# Build-in Variables
         name: '.constant.built-in-variable'
