@@ -16,6 +16,21 @@ patterns: [
         name: 'comment.block.ahk'
     }
 
+# #directives
+    { # includes
+        match: '#\\b(?i:include|include-once)\\b\\s*(.*)$'
+        name: 'keyword.control.import.ahk'
+        captures:
+            1: name: 'string.parameter.import.ahk'
+    }
+    { # others
+        match: '#\\b(?i:allowsamelinecomments|clipboardtimeout|commentflag|errorstdout|escapechar|hotkeyinterval|hotkeymodifiertimeout|hotstring|if|iftimeout|ifwinactive|ifwinexist|ifwinnotactive|ifwinnotexist|include|includeagain|inputlevel|installkeybdhook|installmousehook|keyhistory|ltrim|maxhotkeysperinterval|maxmem|maxthreads|maxthreadsbuffer|maxthreadsperhotkey|menumaskkey|noenv|notrayicon|persistent|singleinstance|usehook|warn|winactivateforce)\\b(.*?)(;.*)?$'
+        name: 'keyword.control.directives.ahk'
+        captures:
+            1: name: 'string.parameter.directives.ahk'
+            2: name: 'comment.line.directives.ahk'
+    }
+
     {# Quoted strings
         name: '.string'
         match: '["].*["]'
@@ -24,12 +39,6 @@ patterns: [
         captures:
             1: name: '.constant.numeric'
         match: '\\s+([0-9]*)\\s+'
-        }
-    {# Directives
-        captures:
-            1: name: '.keyword.operator.ahk'
-            2: name: '.keyword.control.directives.ahk'
-        match: '([\\#])(\\w+)'
         }
     {# Build-in Variables
         name: '.constant.built-in-variable'
